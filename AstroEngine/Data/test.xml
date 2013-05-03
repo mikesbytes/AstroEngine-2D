@@ -1,0 +1,14 @@
+<root>
+	<test>
+		<value>"Hello World!"</value>
+	</test>
+	<test>
+		<value>"This is a test."</value>
+	</test>
+	<element>
+		<newval>"Another test value"</newval>
+		<sub>
+			<testval>"Just another test"</testval>
+		</sub>
+	</element>
+</root>
