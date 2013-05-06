@@ -15,7 +15,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
-struct Timer : public System {
+struct Timer{
 	float elapsed;
 	float delay;
 	bool doesLoop;
@@ -23,7 +23,7 @@ struct Timer : public System {
 	Nano::signal<void()> trigger;
 };
 
-class TimerSystem {
+class TimerSystem : public System {
 public:
 	TimerSystem();
 	virtual ~TimerSystem();

@@ -10,7 +10,7 @@
 
 TimerSystem::TimerSystem() {
 	// TODO Auto-generated constructor stub
-
+	setName("TimerSystem");
 }
 
 TimerSystem::~TimerSystem() {
