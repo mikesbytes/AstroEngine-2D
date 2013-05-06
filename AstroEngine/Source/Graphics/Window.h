@@ -10,6 +10,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "../Utility/Loop.h"
+#include "../Nano/nano_signal_slot.hpp"
 #include "Canvas.h"
 #include <memory>
 
@@ -30,6 +31,9 @@ public:
 	Loop graphicsLoop;
 
 	std::shared_ptr<Canvas> activeCanvas;
+
+	//signals
+	Nano::signal<void()> onClosed;
 protected:
 	sf::Vector2i resolution;
 	std::string title;

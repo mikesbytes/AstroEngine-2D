@@ -47,7 +47,8 @@ int main() {
 	std::flush(std::cout);
 	w.activeCanvas = c;
 
-	w.graphicsLoop.onLoop.connect<TimerSystem, &TimerSystem::update>(&ts);
-	ts.addTimer(5, "closeTimer").trigger.connect<Window, &Window::close>(&w);
+	//w.graphicsLoop.onLoop.connect<TimerSystem, &TimerSystem::update>(&ts);
+	//ts.addTimer(5, "closeTimer").trigger.connect<Window, &Window::close>(&w);
+	w.onClosed.connect<Window, &Window::close>(&w);
 	w.open();
 }

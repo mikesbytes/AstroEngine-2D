@@ -41,6 +41,21 @@ void Window::setTitle(const std::string newTitle) {
 void Window::frame(const float& dTime) {
 	window.clear();
 
+	//get input
+	sf::Event event;
+
+	while (window.pollEvent(event))
+	{
+		switch (event.type)
+		{
+		case sf::Event::Closed:
+			onClosed();
+			break;
+		default:
+			break;
+		}
+	}
+
 	window.draw(*activeCanvas);
 
 	window.display();

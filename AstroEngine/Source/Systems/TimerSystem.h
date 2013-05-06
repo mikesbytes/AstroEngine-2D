@@ -8,12 +8,14 @@
 #ifndef TIMERSYSTEM_H_
 #define TIMERSYSTEM_H_
 
+#include "../Nano/nano_signal_slot.hpp"
+#include "System.h"
+
 #include <map>
 #include <SFML/Graphics.hpp>
-#include "../Nano/nano_signal_slot.hpp"
 #include <string>
 
-struct Timer {
+struct Timer : public System {
 	float elapsed;
 	float delay;
 	bool doesLoop;
