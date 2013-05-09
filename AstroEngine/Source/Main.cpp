@@ -8,47 +8,41 @@
 #include <iostream>
 #include <memory>
 #include "SFML/Graphics.hpp"
+#include "Graphics/SceneGraph.h"
+#include "Graphics/Rectangle.h"
 #include "Graphics/Window.h"
-#include "Graphics/Canvas.h"
-#include "Graphics/Mediums/TileMedium.h"
-#include "Graphics/Mediums/BasicMedium.h"
-#include "Systems/TimerSystem.h"
+#include "Graphics/TileView.h"
 
 int main() {
-	Window w;
-	TimerSystem ts;
-	auto c = std::make_shared<Canvas>();
-	c->setPosition(0,0);
-	c->setScale(.5, .5);
+	auto l = std::make_shared<Graphics::Layer>();
+	auto t = new Graphics::TileView;
+	auto r = new Graphics::Rectangle;
+	r->rect.setSize(sf::Vector2f(50,50));
+	r->rect.setFillColor(sf::Color::Red);
 
-	auto tm = std::make_shared<TileMedium>();
-	c->mediums.push_back(tm);
+	t->tileSheet.setTileSize(sf::Vector2u(128,128));
+	if (t->tileSheet.tileSheetTex.loadFromFile("Data/Media/Tileset.png")) {
+		std::cout << "Tileset loaded";
+	}
+	t->tileSheet.tileSheetTex.setSmooth(true);
 
-	auto bm = std::make_shared<BasicMedium>();
-	c->mediums.push_back(bm);
-
-	auto r = std::make_shared<sf::RectangleShape>();
-	r->setSize(sf::Vector2f(100,100));
-	r->setFillColor(sf::Color::Red);
-
-	bm->addDrawable("rect", r);
-
-	const int level[] =
-	{
-			1,2,0,0,0,0,0,0,
-			0,0,0,0,0,0,0,0,
-			2,2,2,2,2,2,2,2,
-			1,1,1,1,1,1,1,1
+	std::vector<unsigned> mapVec {
+		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+		0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+		2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,
+		1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,2,2,2,
+		1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 	};
 
-	if (tm->load("Data/Media/Tileset.png", sf::Vector2u(128, 128), level, 8, 4))
-		std::cout << "tiles loaded";
-	else std::cout << "tiles not loaded";
-	std::flush(std::cout);
-	w.activeCanvas = c;
+	t->setTileSize(sf::Vector2f(64,64));
+	t->loadMap(mapVec, 21, 5);
+	l->addChild(t);
+	l->addChild(r);
 
-	//w.graphicsLoop.onLoop.connect<TimerSystem, &TimerSystem::update>(&ts);
-	//ts.addTimer(5, "closeTimer").trigger.connect<Window, &Window::close>(&w);
-	w.onClosed.connect<Window, &Window::close>(&w);
+	Graphics::Window w;
+
+	w.activeNode = l;
+	w.onClosed.connect<Graphics::Window, &Graphics::Window::close>(&w);
+
 	w.open();
 }

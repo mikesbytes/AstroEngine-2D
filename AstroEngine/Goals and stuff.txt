@@ -1,0 +1,22 @@
+To keep things on track:
+
+TODO LIST:
+-Restructure engine, is currently spaghetti code
+
+
+Structure:
+
+-Base Drawable Class: Contains rendering information
+-Base Target Class: Stuff you can render to
+-Base System Class: Systems that form a scene
+-Base Manager Class: Managers that form the game
+-Base Scriptable Class: Self explanatory
+
+Everything goes back to one of those base classes, unless it is in
+a subsystem of some sort.
+
+Example structure:
+
+-Window: Inherits Target
+-Tile system: Inherits Drawable, System
+-Input: Inherits System, Manager

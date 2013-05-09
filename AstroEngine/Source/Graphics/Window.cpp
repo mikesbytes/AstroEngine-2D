@@ -7,12 +7,13 @@
 
 #include "Window.h"
 
+namespace Graphics {
 Window::Window() {
 	// TODO Auto-generated constructor stub
 	resolution.x = 800;
 	resolution.y = 600;
 	title = "Window";
-	graphicsLoop.onLoop.connect<Window, &Window::frame>(this);
+	graphicsLoop.onLoop.connect<Window, &Window::frame>(this); //connect frame to loop
 }
 
 Window::~Window() {
@@ -48,7 +49,7 @@ void Window::frame(const float& dTime) {
 	{
 		switch (event.type)
 		{
-		case sf::Event::Closed:
+		case sf::Event::Closed: //x button clicked
 			onClosed();
 			break;
 		default:
@@ -56,7 +57,7 @@ void Window::frame(const float& dTime) {
 		}
 	}
 
-	window.draw(*activeCanvas);
+	activeNode->draw(window, baseTransform); //draw active node
 
 	window.display();
 }
@@ -65,3 +66,4 @@ void Window::setResolution(const float& sizeX, const float& sizeY) {
 	resolution.x = sizeX;
 	resolution.y = sizeY;
 }
+} /* namespace Graphics */

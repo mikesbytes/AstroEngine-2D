@@ -7,6 +7,7 @@
 
 #include "Loop.h"
 
+namespace Utility {
 Loop::Loop() {
 	// TODO Auto-generated constructor stub
 	looping = false;
@@ -35,3 +36,4 @@ void Loop::loop() {
 void Loop::stop() {
 	looping = false;
 }
+} /* namespace Utility */

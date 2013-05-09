@@ -24,7 +24,7 @@ public:
 	bool changeScene(std::shared_ptr<Scene>& nextScene);
 	bool changeScene(const std::string& nextSceneName);
 
-	std::shared_ptr<Window> linkedWindow;
+	std::shared_ptr<Graphics::Window> linkedWindow;
 	std::shared_ptr<Scene> activeScene;
 	std::map<std::string, std::shared_ptr<Scene> > sceneMap;
 };

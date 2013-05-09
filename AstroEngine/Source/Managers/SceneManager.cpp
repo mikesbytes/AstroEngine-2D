@@ -25,7 +25,7 @@ std::shared_ptr<Scene> SceneManager::newScene(const std::string& sceneName) {
 bool SceneManager::changeScene(std::shared_ptr<Scene>& nextScene) {
 	if (nextScene) {
 		activeScene = nextScene;
-		linkedWindow->activeCanvas = nextScene->sceneCanvas;
+		//linkedWindow->activeCanvas = nextScene->sceneCanvas;
 		return true;
 	}
 	return false;
