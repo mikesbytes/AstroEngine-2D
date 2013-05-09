@@ -10,9 +10,12 @@
 
 #include <SFML/Graphics.hpp>
 #include "../Utility/Loop.h"
+#include "../Managers/SceneManager/Scene.h"
 #include "../Nano/nano_signal_slot.hpp"
 #include "SceneGraph.h"
 #include <memory>
+
+namespace Managers { class Scene; }
 
 namespace Graphics {
 class Window {
@@ -31,7 +34,8 @@ public:
 	sf::RenderWindow window; //the window
 	Utility::Loop graphicsLoop; //the loop
 
-	std::shared_ptr<Graphics::Node> activeNode; //Node to draw
+	std::shared_ptr<Managers::Scene> activeScene; //Node to draw
+
 
 	//signals
 	Nano::signal<void()> onClosed;

@@ -10,18 +10,21 @@
 
 #include "../Graphics/Window.h"
 #include "SceneManager/Scene.h"
+#include "Manager.h"
 
 #include <memory>
 #include <string>
 #include <map>
 
-class SceneManager {
+namespace Managers {
+
+class SceneManager : public Manager {
 public:
 	SceneManager();
 	virtual ~SceneManager();
 
-	std::shared_ptr<Scene> newScene(const std::string& sceneName);
-	bool changeScene(std::shared_ptr<Scene>& nextScene);
+	std::shared_ptr<Managers::Scene> newScene(const std::string& sceneName);
+	bool changeScene(std::shared_ptr<Managers::Scene>& nextScene);
 	bool changeScene(const std::string& nextSceneName);
 
 	std::shared_ptr<Graphics::Window> linkedWindow;
@@ -29,4 +32,5 @@ public:
 	std::map<std::string, std::shared_ptr<Scene> > sceneMap;
 };
 
+} /* namespace Managers */
 #endif /* SCENEMANAGER_H_ */

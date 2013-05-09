@@ -7,6 +7,8 @@
 
 #include "SceneManager.h"
 
+namespace Managers {
+
 SceneManager::SceneManager() {
 	// TODO Auto-generated constructor stub
 
@@ -16,16 +18,16 @@ SceneManager::~SceneManager() {
 	// TODO Auto-generated destructor stub
 }
 
-std::shared_ptr<Scene> SceneManager::newScene(const std::string& sceneName) {
+std::shared_ptr<Managers::Scene> SceneManager::newScene(const std::string& sceneName) {
 	auto newScene = std::make_shared<Scene>();
 	sceneMap[sceneName] = newScene;
 	return newScene;
 }
 
-bool SceneManager::changeScene(std::shared_ptr<Scene>& nextScene) {
+bool SceneManager::changeScene(std::shared_ptr<Managers::Scene>& nextScene) {
 	if (nextScene) {
 		activeScene = nextScene;
-		//linkedWindow->activeCanvas = nextScene->sceneCanvas;
+		linkedWindow->activeScene = nextScene;
 		return true;
 	}
 	return false;
@@ -38,3 +40,5 @@ bool SceneManager::changeScene(const std::string& nextSceneName) {
 
 	return false;
 }
+
+} /* namespace Managers */

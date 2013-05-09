@@ -53,11 +53,12 @@ void Window::frame(const float& dTime) {
 			onClosed();
 			break;
 		default:
+			activeScene->processInput(event);
 			break;
 		}
 	}
 
-	activeNode->draw(window, baseTransform); //draw active node
+	activeScene->draw(window); //draw active node
 
 	window.display();
 }
