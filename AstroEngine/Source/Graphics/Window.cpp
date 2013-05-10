@@ -9,7 +9,6 @@
 
 namespace Graphics {
 Window::Window() {
-	// TODO Auto-generated constructor stub
 	resolution.x = 800;
 	resolution.y = 600;
 	title = "Window";
@@ -21,18 +20,18 @@ Window::~Window() {
 }
 
 void Window::open() {
-	window.create(sf::VideoMode(resolution.x, resolution.y), title);
-	window.setVerticalSyncEnabled(true);
+	window.create(sf::VideoMode(resolution.x, resolution.y), title); //start window
+	window.setVerticalSyncEnabled(true); //vsync
 	graphicsLoop.start();
 }
 
 void Window::close() {
-	graphicsLoop.stop();
-	window.close();
+	graphicsLoop.stop(); //stop loop
+	window.close(); //close window
 }
 
 void Window::reset() {
-	window.create(sf::VideoMode(resolution.x, resolution.y), title);
+	window.create(sf::VideoMode(resolution.x, resolution.y), title); //recreate window
 }
 
 void Window::setTitle(const std::string newTitle) {
