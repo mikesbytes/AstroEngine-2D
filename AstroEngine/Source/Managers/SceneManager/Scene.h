@@ -37,7 +37,7 @@ public:
 
 protected:
 
-	Systems::InputSystem* inputSystem;
+	//Systems::InputSystem* inputSystem;
 
 };
 } /* namespace Managers */

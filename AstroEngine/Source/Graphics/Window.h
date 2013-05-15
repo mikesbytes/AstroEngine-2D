@@ -28,7 +28,7 @@ public:
 	void reset(); //reset window
 	void frame(const float& dTime); //frame function (with delta time)
 
-	void setTitle(const std::string newTitle); //set window title
+	void setTitle(const std::string &newTitle); //set window title
 	void setResolution(const float& sizeX, const float& sizeY); //set window resolution
 
 	sf::RenderWindow window; //the window
