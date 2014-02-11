@@ -11,8 +11,10 @@
 namespace Managers {
 Scene::Scene() {
 	// setup default systems
-	inputSystem = new Systems::InputSystem;
-	addSystem(inputSystem);
+	//inputSystem = new Systems::InputSystem;
+
+	// add input system
+	addSystem(new Systems::InputSystem);
 }
 
 Scene::~Scene() {
@@ -20,7 +22,8 @@ Scene::~Scene() {
 }
 
 void Scene::processInput(sf::Event& event) {
-	inputSystem->proccessInput(event);
+	//inputSystem->proccessInput(event);
+	dynamic_cast<Systems::InputSystem *>(getSystem("InputSystem"))->processInput(event);
 }
 
 void Scene::draw(sf::RenderTarget& target) {

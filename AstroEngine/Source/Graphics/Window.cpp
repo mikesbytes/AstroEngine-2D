@@ -8,11 +8,12 @@
 #include "Window.h"
 
 namespace Graphics {
-Window::Window() {
+Window::Window() :
+    title("Window") {
 	resolution.x = 800;
 	resolution.y = 600;
-	title = "Window";
 	graphicsLoop.onLoop.connect<Window, &Window::frame>(this); //connect frame to loop
+	onClosed.connect<Window, &Window::close>(this);
 }
 
 Window::~Window() {
@@ -34,7 +35,7 @@ void Window::reset() {
 	window.create(sf::VideoMode(resolution.x, resolution.y), title); //recreate window
 }
 
-void Window::setTitle(const std::string newTitle) {
+void Window::setTitle(const std::string &newTitle) {
 	title = newTitle;
 }
 
@@ -44,10 +45,8 @@ void Window::frame(const float& dTime) {
 	//get input
 	sf::Event event;
 
-	while (window.pollEvent(event))
-	{
-		switch (event.type)
-		{
+	while (window.pollEvent(event)) {
+		switch (event.type) {
 		case sf::Event::Closed: //x button clicked
 			onClosed();
 			break;

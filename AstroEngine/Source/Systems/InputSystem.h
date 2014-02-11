@@ -23,7 +23,7 @@ public:
 	virtual std::string name() const { return "InputSystem"; }
 
 	//put input here
-	void proccessInput(sf::Event& event);
+	void processInput(sf::Event& event);
 
 	//is a keyboard key pressed
 	bool isKeyPressed(const sf::Keyboard::Key& keyCode);

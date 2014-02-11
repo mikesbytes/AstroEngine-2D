@@ -18,7 +18,7 @@ InputSystem::~InputSystem() {
 	// TODO Auto-generated destructor stub
 }
 
-void InputSystem::proccessInput(sf::Event& event) {
+void InputSystem::processInput(sf::Event& event) {
 	switch (event.type) {
 	case sf::Event::KeyPressed:
 		keyPressedSignals[event.key.code]();
